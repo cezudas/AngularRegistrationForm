@@ -1,0 +1,37 @@
+<div class="dropdown" (click)="onMouseClick()">
+  <span class="label" *ngIf="selectedCountry$ | async as selectedCountry">
+    <app-country-select-item [country]="selectedCountry" [selectable]="false"></app-country-select-item>
+    <span class="clear-selection" (click)="clear($event)">x</span>
+  </span>
+
+  <span *ngIf="(selectedCountry$ | async) === undefined" class="placeholder">{{ 'Select a country' }}</span>
+
+  <div *ngIf="overlayVisible">
+    <div class="dropdown-header">
+      <div class="dropdown-filter-container" (click)="$event.stopPropagation()">
+        <input
+          #filter
+          type="text"
+          autocomplete="off"
+          [value]="filterValue || ''"
+          (input)="onFilterInputChange($event)" />
+        <span class="close-dropdown" (click)="onCloseClick($event)">Close</span>
+      </div>
+    </div>
+
+    <div>
+      <div *ngIf="isLoading$ | async" class="overlay">
+        <span>Loading countries list...</span><app-spinner></app-spinner>
+      </div>
+      <ul class="dropdown-items" *ngIf="countries$ | async as countries">
+        <cdk-virtual-scroll-viewport #viewport itemSize="20">
+          <app-country-select-item
+            *cdkVirtualFor="let country of countries"
+            class="country-item"
+            [country]="country"
+            (click)="onCountryClick(country)"></app-country-select-item>
+        </cdk-virtual-scroll-viewport>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<ng-content></ng-content>
+<span *ngIf="formInputDirective?.ngControl?.control?.errors as errors">
+  <span class="field-error-hint hint-pattern" *ngIf="errors['pattern']">{{ patternErrorHint }}</span>
+  <span class="field-error-hint hint-required" *ngIf="errors['required']">Required</span>
+</span>

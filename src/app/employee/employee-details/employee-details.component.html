@@ -1,0 +1,14 @@
+<h2>Employee detail information</h2>
+
+<ng-container *ngIf="employee$ | async as employee">
+  <div class="detail-container">
+    <app-detail-item [heading]="'Email'" [value]="employee.email"></app-detail-item>
+    <app-detail-item [heading]="'Username'" [value]="employee.userName"></app-detail-item>
+    <app-detail-item [heading]="'Passowrd'" [value]="employee.password"></app-detail-item>
+    <app-detail-item [heading]="'Full name'" [value]="employee.fullName"></app-detail-item>
+    <app-detail-item *ngIf="country$ | async as country" [heading]="'Country'" [emptyPlaceholder]="false">
+      <app-country-select-item [country]="country" [selectable]="false"></app-country-select-item>
+    </app-detail-item>
+  </div>
+  <button [routerLink]="'/register'">To registration...</button>
+</ng-container>

@@ -1,0 +1,10 @@
+<span class="heading">{{ heading }}:</span>
+<span *ngIf="value; else renderPlaceholder" class="value">
+  {{ value }}
+</span>
+<ng-template #renderPlaceholder>
+  <ng-container *ngIf="emptyPlaceholder">
+    <span>{{ '-' }}</span>
+  </ng-container>
+</ng-template>
+<ng-content></ng-content>

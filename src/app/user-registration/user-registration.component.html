@@ -1,0 +1,49 @@
+<h2>Register user</h2>
+<form autocomplete="off" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <app-form-field [patternErrorHint]="'Entered e-mail is not a valid'">
+    <label
+      >Email*
+      <input formInput type="text" formControlName="email" placeholder="Email address" />
+    </label>
+  </app-form-field>
+
+  <app-form-field [patternErrorHint]="'Invalid - username should contain at least 8 alphanumerical characters'">
+    <label
+      >Username*
+      <input formInput type="text" autocomplete="none" formControlName="userName" placeholder="Username" />
+    </label>
+  </app-form-field>
+
+  <app-form-field [patternErrorHint]="'Invalid - password should contain at least 8 characters'">
+    <label
+      >Password*
+      <input formInput type="password" autocomplete="new-password" formControlName="password" placeholder="Password" />
+    </label>
+  </app-form-field>
+
+  <app-form-field>
+    <label
+      >Full Name
+      <input formInput type="text" formControlName="fullName" placeholder="Full name" />
+    </label>
+  </app-form-field>
+
+  <app-form-field>
+    <label
+      >Country*
+      <app-country-select formInput formControlName="countryCode"> </app-country-select>
+    </label>
+  </app-form-field>
+
+  <div class="action-buttons">
+    <button
+      type="submit"
+      [class.loading]="isLoading$ | async"
+      [disabled]="!registrationForm.valid || (isLoading$ | async)">
+      <span>Submit</span>
+      <app-spinner *ngIf="registrationForm.valid && (isLoading$ | async)"></app-spinner>
+    </button>
+
+    <button [disabled]="!registrationForm.dirty || (isLoading$ | async)" type="reset">Reset</button>
+  </div>
+</form>

@@ -1,0 +1,39 @@
+:host {
+  width: 250px;
+}
+
+.action-buttons {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 80px 80px;
+}
+
+app-spinner {
+  width: 10px;
+  height: 10px;
+}
+
+button.loading {
+  display: flex;
+  > app-spinner {
+    padding-left: 10px;
+  }
+}
+
+.field-error-hint {
+  color: red;
+}
+
+form {
+  width: inherit;
+  display: grid;
+  grid-gap: 10px;
+}
+
+input {
+  width: 100%;
+}
+
+.has-validation-error {
+  border-color: red;
+}
