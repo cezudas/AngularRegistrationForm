@@ -1,2 +1,4 @@
 build
 .angular
+dist
+node_modules
